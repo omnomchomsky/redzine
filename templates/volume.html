@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title>Volume</title>
+    <link rel="stylesheet" href="../static/style.css" />
+</head>
+<body>
+    <include src="../static/banner.html"></include>
+    {%  for pic in pics %}
+        <img src="../static/volumes/{{ pic }}"/>
+    {% endfor %}
+    <include src="../static/banner.html"></include>
+</body>
+<script src="https://unpkg.com/htmlincludejs"></script>
+</html>

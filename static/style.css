@@ -1,0 +1,24 @@
+h1{
+    color: darkred;
+    font-size: 36px;
+}
+
+a:link {
+    color: darkred;
+}
+
+a:visited {
+   color: indianred;
+}
+a:hover {
+    color: red;
+}
+
+a:active {
+    color: orangered;
+}
+
+img {
+    width: 1920px;
+    height: 1080px;
+}
