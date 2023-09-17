@@ -1,3 +1,7 @@
 .idea
 __pycache__/*
 static/volumes/*
+venv/*
+Lib/
+Scripts/
+pyvenv.cfg

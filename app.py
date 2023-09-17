@@ -1,9 +1,10 @@
-from flask import Flask
+from flask import Flask, request
 from flask import send_file
 from flask import render_template
 from markupsafe import Markup
 import os
 import get_volume
+import dao
 app = Flask(__name__)
 
 
@@ -25,7 +26,9 @@ def upcoming_events():
 
 @app.route('/latest_volume')
 def latest_volume():
-    return render_template("latest_volume.html")
+    volume_number = get_volume.get_volumes()[0][1][-1]
+    message = f"<h3><a href=\"volumes/{volume_number}\"> Volume {volume_number} </a></h3>"
+    return render_template("latest_volume.html", message=Markup(message))
 
 
 @app.route('/previous_volumes')
@@ -50,6 +53,16 @@ def get_image():
     filename = "static/volumes/1/0001.jpg"
     return send_file(filename, mimetype='image/jpg')
 
+@app.route('/add_event', methods=['GET', 'POST'])
+def add_event():
+    if request.method == 'POST':
+        event_title = request.form.get('title')
+        event_location = request.form.get('location')
+        event_date = request.form.get('date')
+        event_description = request.form.get('description')
+        event_social = request.form.get('social')
+        dao.add_event(event_title, event_location, event_date, event_description, event_social)
+    return render_template("add_event.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
